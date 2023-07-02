@@ -12,7 +12,6 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private GameObject endPoint;
     [SerializeField] private GameObject background;
 
-    private bool backgroundSpawned;
     GameObject b;
 
     [SerializeField] private List<GameObject> map;
@@ -31,7 +30,7 @@ public class LevelGenerator : MonoBehaviour
     private GameObject bulletsInMap;
 
     [Header("---Tiles")]
-    [SerializeField] private GameObject blocker;
+    [SerializeField] private GameObject closer;
     [SerializeField] private GameObject[] L_tiles;
     [SerializeField] private GameObject[] R_tiles;
     [SerializeField] private GameObject[] T_tiles;
@@ -39,7 +38,7 @@ public class LevelGenerator : MonoBehaviour
 
     private List<GameObject[]> tiles;
 
-    [Header("---Misc")]
+    [Header("---Misc-Debugger")]
     [SerializeField] private List<GameObject> spawners;
     [SerializeField] private List<GameObject> openings;
     [SerializeField] private List<GameObject> newOpenings;
@@ -193,7 +192,7 @@ public class LevelGenerator : MonoBehaviour
         {
             if (!spawner.GetComponent<TileSpawner>().HasSpawned)
             {
-                GameObject b = Instantiate(blocker, spawner.transform.position, Quaternion.identity);
+                GameObject b = Instantiate(closer, spawner.transform.position, Quaternion.identity);
                 map.Add(b);
 
                 b.transform.parent = fillerBlocks.gameObject.transform;
@@ -276,7 +275,7 @@ public class LevelGenerator : MonoBehaviour
             }
             else
             {
-                newTile = Instantiate(blocker, spawner.transform.position, Quaternion.identity);
+                newTile = Instantiate(closer, spawner.transform.position, Quaternion.identity);
                 tempMap.Add(newTile);
 
                 newTile.transform.parent = tilesInMap.gameObject.transform;
@@ -315,7 +314,7 @@ public class LevelGenerator : MonoBehaviour
             }
             else
             {
-                newTile = Instantiate(blocker, spawner.transform.position, Quaternion.identity);
+                newTile = Instantiate(closer, spawner.transform.position, Quaternion.identity);
                 tempMap.Add(newTile);
 
                 newTile.transform.parent = tilesInMap.gameObject.transform;
@@ -353,7 +352,7 @@ public class LevelGenerator : MonoBehaviour
             }
             else
             {
-                newTile = Instantiate(blocker, spawner.transform.position, Quaternion.identity);
+                newTile = Instantiate(closer, spawner.transform.position, Quaternion.identity);
                 tempMap.Add(newTile);
 
                 newTile.transform.parent = tilesInMap.gameObject.transform;
@@ -391,7 +390,7 @@ public class LevelGenerator : MonoBehaviour
             }
             else
             {
-                newTile = Instantiate(blocker, spawner.transform.position, Quaternion.identity);
+                newTile = Instantiate(closer, spawner.transform.position, Quaternion.identity);
                 tempMap.Add(newTile);
 
                 newTile.transform.parent = tilesInMap.gameObject.transform;
@@ -489,7 +488,7 @@ public class LevelGenerator : MonoBehaviour
                     {
                         if (tileOpening.GetComponent<Opening>().BlockerAdded == false)
                         {
-                            GameObject newTile = Instantiate(blocker, tileOpening.transform.position, Quaternion.identity);
+                            GameObject newTile = Instantiate(closer, tileOpening.transform.position, Quaternion.identity);
                             tempMap.Add(newTile);
                             tileOpening.GetComponent<Opening>().BlockerAdded = true;
 
