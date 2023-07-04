@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    [SerializeField] private float damage;
     [SerializeField] private float speed;
     [SerializeField] private float life;
     [SerializeField] private Rigidbody2D rb;
 
-    private float life_;
     private float elapsedTime;
     private Coroutine timeCoroutine;
 
@@ -38,6 +38,12 @@ public class Bullet : MonoBehaviour
     {
         if (collision.CompareTag("Wall"))
         {
+            gameObject.SetActive(false);
+        }
+
+        if (collision.CompareTag("Enemy"))
+        {
+            collision.GetComponent<Enemy>().TakeDamage(damage);
             gameObject.SetActive(false);
         }
     }

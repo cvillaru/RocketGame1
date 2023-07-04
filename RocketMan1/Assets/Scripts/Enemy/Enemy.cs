@@ -11,12 +11,12 @@ public class Enemy : MonoBehaviour
 
     #region Search Algorithm;
     [Header("Search Algorithm")]
-    [SerializeField] protected float searchRadius;
+    [SerializeField] public float searchRadius;
     [SerializeField] protected LayerMask whatIsTarget;
+    [SerializeField] protected LayerMask layerToIgnore;
     [SerializeField] protected Transform target;
-
-
     [SerializeField] protected GameObject sight;
+
     protected float rotationZ;
     protected Vector3 difference;
     protected RaycastHit2D hit;
@@ -34,23 +34,17 @@ public class Enemy : MonoBehaviour
 
     #endregion
 
-    #region states
-    protected enum states
-    {
-        patrol,
-        aggro,
-        aware,
-        hurt
-    }
-    protected states currentState;
-    #endregion
-
     protected Rigidbody2D rb;
 
     protected void Initiate()
     {
         rb = GetComponent<Rigidbody2D>();
         Physics2D.queriesStartInColliders = false;
+    }
+
+    private void Update()
+    {
+        CheckHealth();
     }
 
     protected void Move()
@@ -74,7 +68,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    protected void TakeDamage(int damageTaken)
+    public void TakeDamage(float damageTaken)
     {
         health -= damageTaken;
 

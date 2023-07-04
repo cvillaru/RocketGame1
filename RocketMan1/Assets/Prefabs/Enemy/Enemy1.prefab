@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2119472259838070191}
   - component: {fileID: 5847905991504659363}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,9 +97,9 @@ GameObject:
   - component: {fileID: 2542498113832410959}
   - component: {fileID: 8377535952361311202}
   - component: {fileID: 733529813341435285}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -133,10 +133,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
-  searchRadius: 27
+  searchRadius: 25
   whatIsTarget:
     serializedVersion: 2
     m_Bits: 64
+  layerToIgnore:
+    serializedVersion: 2
+    m_Bits: 384
   target: {fileID: 0}
   sight: {fileID: 5124003087317871767}
   targetInView: 0
@@ -205,7 +208,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &733529813341435285
 SpriteRenderer:
   m_ObjectHideFlags: 0

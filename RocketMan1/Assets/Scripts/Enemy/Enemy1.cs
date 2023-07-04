@@ -19,9 +19,7 @@ public class Enemy1 : Enemy
     }
 
     void Update()
-    {
-        //target = GameObject.FindGameObjectWithTag("Player").transform;
-        
+    {        
         CheckHealth();
     }
     private void FixedUpdate()
@@ -51,9 +49,7 @@ public class Enemy1 : Enemy
         rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
         sight.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
 
-        hit = Physics2D.Raycast(sight.transform.position, sight.transform.right, searchRadius);
-
-
+        hit = Physics2D.Raycast(sight.transform.position, sight.transform.right, searchRadius, ~layerToIgnore);
         if (hit.collider != null)
         {
             if (hit.collider.CompareTag("Player"))

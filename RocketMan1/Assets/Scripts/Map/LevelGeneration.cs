@@ -15,7 +15,7 @@ public class LevelGenerator : MonoBehaviour
     GameObject b;
 
     [SerializeField] private List<GameObject> map;
-    [SerializeField] private List<GameObject> tempMap;
+    [HideInInspector] public List<GameObject> tempMap;
 
     [SerializeField] private GameObject tileSpawner;
     
@@ -38,10 +38,10 @@ public class LevelGenerator : MonoBehaviour
 
     private List<GameObject[]> tiles;
 
-    [Header("---Misc-Debugger")]
-    [SerializeField] private List<GameObject> spawners;
-    [SerializeField] private List<GameObject> openings;
-    [SerializeField] private List<GameObject> newOpenings;
+    //[Header("---Misc-Debugger")]
+    [HideInInspector] public List<GameObject> spawners;
+    [HideInInspector] public List<GameObject> openings;
+    [HideInInspector] public List<GameObject> newOpenings;
 
     Dictionary<string, int> openingType;
 
