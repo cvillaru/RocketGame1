@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBtwnSpawn: 1
-  enemy: {fileID: 6854194230954077120, guid: d91853f6474b9aa4ab6ccf68a41393a2, type: 3}
+  enemy: {fileID: 6791770914297373105, guid: c5698fb76c44c174799cda908e84041c, type: 3}
   canSpawn: 0
   maxEnemiesToSpawn: 3
   spawnedEnemies: []

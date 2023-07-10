@@ -43,7 +43,7 @@ public class Bullet : MonoBehaviour
 
         if (collision.CompareTag("Enemy"))
         {
-            collision.GetComponent<Enemy>().TakeDamage(damage);
+            collision.GetComponent<Enemy_AI>().TakeDamage(damage);
             gameObject.SetActive(false);
         }
     }

@@ -1,9 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class LevelGenerator : MonoBehaviour
 {
+    [Header("---Pathfinding")]
+    [SerializeField] private AstarPath ap;
+    [SerializeField] private float mapScanDelayTime;
+    private GridGraph gg;
+
     [Header("---Player")]
     [SerializeField] private GameObject player;
 
@@ -64,6 +70,9 @@ public class LevelGenerator : MonoBehaviour
     private void Start()
     {
         player.SetActive(false);
+
+        gg = ap.data.gridGraph;
+        
         openingType = new Dictionary<string, int>()
         {
             {"Opening", 0},
@@ -127,6 +136,13 @@ public class LevelGenerator : MonoBehaviour
         tempMap = new List<GameObject>();
     }
 
+    IEnumerator ScanMap() 
+    {
+        yield return new WaitForSeconds(mapScanDelayTime); // Wait for 0.2 seconds
+
+        ap.Scan(); // Scan the graph
+    }
+
     private void FinishMap()
     {
         foreach (GameObject t in map)
@@ -136,7 +152,6 @@ public class LevelGenerator : MonoBehaviour
                 continue;
             }
 
-            //t.GetComponent<Tile>().CanSpawn = true;
             foreach (GameObject enemySpawner in t.GetComponent<Tile>().EnemySpanwers)
             {
                 if (enemySpawner != null)
@@ -146,7 +161,12 @@ public class LevelGenerator : MonoBehaviour
             }
         }
 
+        gg.center = new Vector3(Mathf.FloorToInt((mapSize.x * 20) / 2), Mathf.FloorToInt((mapSize.y * 20) / 2), 10f);
+
+        gg.SetDimensions(200,200,1f);
+
         map.Add(b);
+        StartCoroutine(ScanMap());
     }
 
     private void SetStartAndFinish()
@@ -571,7 +591,6 @@ public class LevelGenerator : MonoBehaviour
         PlaceNewTiles(Mathf.RoundToInt(f * 0.25f));
 
     }
-
 
     /// <summary>
     /// generate grid
